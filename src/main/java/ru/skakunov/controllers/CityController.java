@@ -1,12 +1,12 @@
 package ru.skakunov.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import ru.skakunov.controllers.dto.AddressDto;
 import ru.skakunov.controllers.dto.CityDto;
+import ru.skakunov.controllers.dto.IStreet;
+import ru.skakunov.persist.model.Street;
 import ru.skakunov.service.CityService;
 
 import java.util.List;
@@ -28,10 +28,23 @@ public class CityController {
     }
 
     @PostMapping("/new")
-    public void create(CityDto cityDto) {
+    public void create(@RequestBody CityDto cityDto) {
         cityService.save(cityDto);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<AddressDto> searchForData(@RequestParam("address") String address) {
+        return cityService.searchForData(address);
+    }
 
+    @GetMapping("/search/body")
+    public AddressDto searchForData(@RequestBody AddressDto address) {
+        return cityService.searchForData(address);
+    }
+
+    @GetMapping("/count")
+    public List<IStreet> countHouses() {
+        return cityService.countTotalHouses();
+    }
 
 }

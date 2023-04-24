@@ -1,10 +1,7 @@
 package ru.skakunov.service;
 
 import org.springframework.http.ResponseEntity;
-import ru.skakunov.controllers.dto.AddressDto;
-import ru.skakunov.controllers.dto.CityDto;
-import ru.skakunov.controllers.dto.IStreet;
-import ru.skakunov.persist.model.Street;
+import ru.skakunov.controllers.dto.*;
 
 import java.util.List;
 
@@ -14,9 +11,11 @@ public interface CityService {
 
     void save(CityDto cityDto);
 
-    ResponseEntity<AddressDto> searchForData(String address);
+    ResponseEntity<List<ISearch>> searchAddress(String address);
 
-    AddressDto searchForData(AddressDto addressDto);
+    List<ICity> cityCountHouses();
 
-    List<IStreet> countTotalHouses();
+    List<IHousesInCity> countHouseInStreetByCity(String cityName);
+
+    List<IHousesWithApartments> countApartByStreet( String streetName);
 }

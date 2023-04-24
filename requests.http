@@ -1,0 +1,11 @@
+GET http://localhost:8080/api/cities/count-house
+
+###
+
+GET http://localhost:8080/api/cities/count-house?city=Ярославль
+
+###
+
+GET http://localhost:8080/api/cities/count-house-city/Володарского
+
+
